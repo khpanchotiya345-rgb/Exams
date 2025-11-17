@@ -1381,7 +1381,6 @@ def consumer():
     
     mutex = signal(mutex) # Unlock the buffer
     
-    global empty
     empty = signal(empty) # Signal an empty slot
 
 def print_buffer_status():
