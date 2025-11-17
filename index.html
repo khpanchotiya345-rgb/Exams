@@ -1365,11 +1365,9 @@ def producer():
 
 def consumer():
     global mutex, empty, full, buf
-    
-    global full
+
     full = wait(full) # Wait for a full slot
     
-    global mutex
     mutex = wait(mutex) # Lock the buffer
     
     # Critical Section
