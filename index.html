@@ -56,21 +56,6 @@
                 <div class="accordion-content p-5 border-t border-gray-200">
                     <div class="relative">
 <pre data-lang="Shell Script (exp2_scripts.sh)">#!/bin/bash
-
-# Q.1: Welcome Message
-echo "--- Q.1: Welcome Message ---"
-echo "Enter your user name:"
-read username
-echo "welcome ${username}!"
-echo "****************************"
-date
-echo "***************************"
-echo "Who is logged in?"
-echo "${username}"
-echo "*****************************"
-echo -e "\n"
-
-
 # Q.2: Compare Two Numbers
 echo "--- Q.2: Compare Two Numbers ---"
 echo "Enter 1st number:"
@@ -85,7 +70,6 @@ fi
 echo -e "\n"
 
 # Find the triangle type by reading the lengths of its sides. 
-
 echo “Enter the lengths of Triangle:” 
 echo “Side 1:” 
 read s1 
@@ -107,7 +91,6 @@ else
 fi
 
 # Q.4 Generate Factorial of Number.  
-    
 echo “Enter the number:” 
 read num 
 fact=1 
@@ -124,10 +107,8 @@ echo “Factorial of $num is: $fact”
 echo "--- Q.5: Fibonacci Series ---"
 echo "Enter the number of terms:"
 read num
-
 a=0
 b=1
-
 echo "Fibonacci sequence up to $num terms:"
 for (( i=0; i<num; i++ )); do
   echo -n "$a "
@@ -137,21 +118,17 @@ for (( i=0; i<num; i++ )); do
 done
 echo -e "\n\n" # Add newlines for spacing
 
-
 # Q.6: Palindrome Number
 echo "--- Q.6: Palindrome Number ---"
 echo "Enter a number:"
 read num
-
 temp=$num
 rev=0
-
 while [ $num -gt 0 ]; do
   rem=$((num % 10))
   rev=$((rev * 10 + rem))
   num=$((num / 10))
 done
-
 if [ $temp -eq $rev ]; then
   echo "Number is palindrome"
 else
