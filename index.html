@@ -1,0 +1,2200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi's OS Lab Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Simple style for code blocks */
+        pre {
+            background-color: #f3f4f6; /* gray-100 */
+            border: 1px solid #e5e7eb; /* gray-200 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1rem;
+            overflow-x: auto; /* Allow horizontal scroll for long code lines */
+            font-size: 0.875rem; /* text-sm */
+        }
+        
+        /* Style for the code block language title */
+        pre::before {
+            content: attr(data-lang); /* Use the data-lang attribute as content */
+            display: block;
+            font-weight: 600; /* font-semibold */
+            font-size: 0.75rem; /* text-xs */
+            color: #4b5563; /* gray-600 */
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Hide accordion content by default */
+        .accordion-content {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+
+    <div class="container mx-auto max-w-4xl p-4 sm:p-8">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl font-bold text-gray-900">OS Lab Portfolio</h1>
+            <!-- I got your name from the first PDF you provided -->
+            <p class="text-xl text-gray-600 mt-2">Khushi Panchotiya (23BIT112)</p>
+        </header>
+
+        <!-- Accordion List -->
+        <div class="space-y-4" id="accordion-container">
+
+            <!-- Experiment 2: Shell Scripts -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 2: Basic Shell Scripts</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200">
+                    <div class="relative">
+<pre data-lang="Shell Script (exp2_scripts.sh)">#!/bin/bash
+
+# Q.1: Welcome Message
+echo "--- Q.1: Welcome Message ---"
+echo "Enter your user name:"
+read username
+echo "welcome ${username}!"
+echo "****************************"
+date
+echo "***************************"
+echo "Who is logged in?"
+echo "${username}"
+echo "*****************************"
+echo -e "\n"
+
+
+# Q.2: Compare Two Numbers
+echo "--- Q.2: Compare Two Numbers ---"
+echo "Enter 1st number:"
+read n1
+echo "Enter 2nd number:"
+read n2
+if [ $n1 -gt $n2 ]; then
+  echo "${n1} is greater than ${n2}"
+else
+  echo "${n2} is greater than ${n1}"
+fi
+echo -e "\n"
+
+
+# Q.5: Fibonacci Series
+echo "--- Q.5: Fibonacci Series ---"
+echo "Enter the number of terms:"
+read num
+
+a=0
+b=1
+
+echo "Fibonacci sequence up to $num terms:"
+for (( i=0; i<num; i++ )); do
+  echo -n "$a "
+  fn=$((a + b))
+  a=$b
+  b=$fn
+done
+echo -e "\n\n" # Add newlines for spacing
+
+
+# Q.6: Palindrome Number
+echo "--- Q.6: Palindrome Number ---"
+echo "Enter a number:"
+read num
+
+temp=$num
+rev=0
+
+while [ $num -gt 0 ]; do
+  rem=$((num % 10))
+  rev=$((rev * 10 + rem))
+  num=$((num / 10))
+done
+
+if [ $temp -eq $rev ]; then
+  echo "Number is palindrome"
+else
+  echo "Number is NOT palindrome"
+fi
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiment 3: More Shell Scripts -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 3: Utility Shell Scripts</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200">
+                    <div class="relative">
+<pre data-lang="Shell Script (exp3_scripts.sh)">#!/bin/bash
+
+# Q.1: Find Type of Triangle (from Angles)
+echo "--- Q.1: Triangle Type ---"
+echo "Enter Angle 1:"
+read a
+echo "Enter Angle 2:"
+read b
+echo "Enter Angle 3:"
+read c
+
+sum=$((a+b+c))
+
+if [ $sum -ne 180 ]; then
+  echo "Invalid triangle (sum is not 180)"
+else
+  if [ $a -eq 60 ] && [ $b -eq 60 ] && [ $c -eq 60 ]; then
+    echo "Equilateral triangle"
+  elif [ $a -eq 90 ] || [ $b -eq 90 ] || [ $c -eq 90 ]; then
+    echo "Right-angled triangle"
+  elif [ $a -gt 90 ] || [ $b -gt 90 ] || [ $c -gt 90 ]; then
+    echo "Obtuse-angled triangle"
+  elif [ $a -lt 90 ] && [ $b -lt 90 ] && [ $c -lt 90 ]; then
+    echo "Acute-angled triangle"
+  else
+    echo "Unknown triangle type"
+  fi
+fi
+echo -e "\n"
+
+
+# Q.4: Find and Remove Duplicate Lines
+echo "--- Q.4: Remove Duplicates ---"
+echo "Enter the file name:"
+read file
+
+if [ ! -f "$file" ]; then
+  echo "File does not exist."
+else
+  sort -u "$file" -o "$file"
+  echo "Duplicate lines are removed from '$file'."
+fi
+echo -e "\n"
+
+
+# Q.5: Generate a Secure Random Password
+echo "--- Q.5: Random Password Generator ---"
+echo "Generating random 12 character password:"
+
+password=$(tr -dc 'A-Za-z0-9!@#$%^&*()_+{}[]' < /dev/urandom | fold -w 12 | head -n 1)
+
+echo "Your strong password: $password"
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiment 4: FCFS -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 4: FCFS Scheduling</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
+                    <div class="relative">
+<pre data-lang="Python (fcfs.py)">
+n = int(input("Enter number of processes: "))
+processes = []
+for i in range(n):
+    at = int(input(f"Enter Arrival Time for process {i+1}: "))
+    bt = int(input(f"Enter Burst Time for process {i+1}: "))
+    processes.append({'Process': i+1, 'AT': at, 'BT': bt})
+
+sorted_processes = sorted(processes, key=lambda x: x['AT'])
+
+ET = []
+current_time = 0
+
+for p in sorted_processes:
+    if p['AT'] > current_time:
+        current_time = p['AT']
+    
+    current_time += p['BT']
+    ET.append(current_time)
+
+for i, p in enumerate(sorted_processes):
+    p['ET'] = ET[i]
+    p['TAT'] = p['ET'] - p['AT']
+    p['WT'] = p['TAT'] - p['BT']
+
+process_results = {}
+for p in sorted_processes:
+    process_results[p['Process']] = {
+        'AT': p['AT'],
+        'BT': p['BT'],
+        'TAT': p['TAT'],
+        'WT': p['WT']
+    }
+
+print() 
+print(f"{'PID':<5}\t{'AT':<5}\t{'BT':<5}\t{'TAT':<5}\t{'WT':<5}")
+print("-" * 35)
+
+for p in processes:
+    res = process_results[p['Process']]
+    print(f"P{p['Process']:<4}\t{res['AT']:<5}\t{res['BT']:<5}\t{res['TAT']:<5}\t{res['WT']:<5}")
+
+avg_tat = sum(res['TAT'] for res in process_results.values()) / n
+avg_wt = sum(res['WT'] for res in process_results.values()) / n
+
+print(f"\nAverage Turnaround Time: {avg_tat:.2f}")
+print(f"Average Waiting Time: {avg_wt:.2f}")
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                    <div class="relative">
+<pre data-lang="Shell Script (fcfs.sh)">
+#!/bin/bash
+
+declare -A at_map bt_map tat_map wt_map
+
+read -p "Enter number of processes: " n
+
+for (( i=1; i<=n; i++ )); do
+    read -p "Enter Arrival Time for Process $i: " at
+    read -p "Enter Burst Time for Process $i: " bt
+    at_map[$i]=$at
+    bt_map[$i]=$bt
+done
+
+# Sort PIDs by arrival time
+sorted_pids=$(for i in "${!at_map[@]}"; do echo "$i ${at_map[$i]}"; done | sort -n -k2)
+
+current_time=0
+total_tat=0
+total_wt=0
+
+echo "$sorted_pids" | while read -r id at; do
+    if (( at > current_time )); then
+        current_time=$at
+    fi
+    
+    bt=${bt_map[$id]}
+    current_time=$((current_time + bt))
+    
+    tat=$((current_time - at))
+    wt=$((tat - bt))
+    
+    tat_map[$id]=$tat
+    wt_map[$id]=$wt
+    
+    total_tat=$((total_tat + tat))
+    total_wt=$((total_wt + wt))
+done
+
+echo -e "\nProcess | AT | BT | TAT | WT"
+echo "--------------------------------"
+for (( id=1; id<=n; id++ )); do
+    printf "%-7s | %-4s | %-4s | %-5s | %-5s\n" "P$id" "${at_map[$id]}" "${bt_map[$id]}" "${tat_map[$id]}" "${wt_map[$id]}"
+done
+
+avg_tat=$(echo "scale=2; $total_tat / $n" | bc)
+avg_wt=$(echo "scale=2; $total_wt / $n" | bc)
+
+echo
+echo "Average Turnaround Time: $avg_tat"
+echo "Average Waiting Time: $avg_wt"
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Experiment 5: SJF/SRT-F -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 5: SJF / SRT-F Scheduling</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
+                    <div class="relative">
+<pre data-lang="Python (sjf.py)">
+n = int(input("Enter number of processes: "))
+choice = input("Enter your choice: (A) Preemptive (B) Non-preemptive: ").strip().upper()
+
+if choice not in ['A', 'B']:
+    print("Invalid choice! Please restart and enter 'A' or 'B'.")
+    exit()
+
+processes = []
+for i in range(n):
+    at = int(input(f"Enter Arrival Time for P{i+1}: "))
+    bt = int(input(f"Enter Burst Time for P{i+1}: "))
+    processes.append({
+        'pid': f'P{i+1}',
+        'at': at,
+        'bt': bt,
+        'remaining_bt': bt,
+        'ct': 0, 'tat': 0, 'wt': 0,
+        'finished': False
+    })
+
+gantt_chart = []
+current_time = 0
+completed_processes = 0
+
+if choice == 'B': # Non-Preemptive (SJF)
+    while completed_processes < n:
+        ready_processes = []
+        for p in processes:
+            if p['at'] <= current_time and not p['finished']:
+                ready_processes.append(p)
+        
+        if not ready_processes:
+            gantt_chart.append("IDLE")
+            current_time += 1
+            continue
+            
+        selected_process = min(ready_processes, key=lambda x: x['bt'])
+        
+        gantt_chart.extend([selected_process['pid']] * selected_process['bt'])
+        current_time += selected_process['bt']
+        selected_process['ct'] = current_time
+        selected_process['finished'] = True
+        completed_processes += 1
+
+else: # Preemptive (SRT-F)
+    while completed_processes < n:
+        ready_processes = []
+        for p in processes:
+            if p['at'] <= current_time and not p['finished']:
+                ready_processes.append(p)
+        
+        if not ready_processes:
+            gantt_chart.append("IDLE")
+            current_time += 1
+            continue
+        
+        selected_process = min(ready_processes, key=lambda x: x['remaining_bt'])
+        
+        selected_process['remaining_bt'] -= 1
+        gantt_chart.append(selected_process['pid'])
+        current_time += 1
+        
+        if selected_process['remaining_bt'] == 0:
+            selected_process['ct'] = current_time
+            selected_process['finished'] = True
+            completed_processes += 1
+
+# --- Final Calculations & Printing ---
+total_tat = 0
+total_wt = 0
+
+for p in processes:
+    p['tat'] = p['ct'] - p['at']
+    p['wt'] = p['tat'] - p['bt']
+    total_tat += p['tat']
+    total_wt += p['wt']
+
+# Condense Gantt Chart
+condensed_gantt = []
+if gantt_chart:
+    current_p = gantt_chart[0]
+    for p in gantt_chart[1:]:
+        if p != current_p:
+            condensed_gantt.append(f"| {current_p} ")
+            current_p = p
+    condensed_gantt.append(f"| {current_p} |")
+print("\nGantt Chart:")
+print("".join(condensed_gantt))
+
+# Print final table
+print("\n{:<5} {:<5} {:<5} {:<5} {:<5}".format('Pid', 'AT', 'BT', 'TAT', 'WT'))
+print("-" * 30)
+for p in sorted(processes, key=lambda x: x['pid']):
+    print("{:<5} {:<5} {:<5} {:<5} {:<5}".format(p['pid'], p['at'], p['bt'], p['tat'], p['wt']))
+
+avg_tat = total_tat / n
+avg_wt = total_wt / n
+print(f"\nAverage Turn Around Time: {avg_tat:.2f}")
+print(f"Average Waiting Time: {avg_wt:.2f}")
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                    <div class="relative">
+<pre data-lang="Shell Script (sjf.sh)">
+#!/bin/bash
+
+declare -A at bt rbt ct tat wt finished
+
+read -p "Enter number of processes: " n
+read -p "Enter your choice: (A) Preemptive (B) Non-preemptive: " choice
+choice=$(echo "$choice" | tr 'a-z' 'A-Z')
+
+if [[ "$choice" != "A" && "$choice" != "B" ]]; then
+    echo "Invalid choice! Please enter 'A' or 'B'."
+    exit 1
+fi
+
+for (( i=1; i<=n; i++ )); do
+    read -p "Enter Arrival Time for P$i: " at[$i]
+    read -p "Enter Burst Time for P$i: " bt[$i]
+    rbt[$i]=${bt[$i]}
+    finished[$i]=0
+done
+
+current_time=0
+completed_processes=0
+total_tat=0
+total_wt=0
+
+if [[ "$choice" == "B" ]]; then
+    # Non-Preemptive (SJF)
+    while (( completed_processes < n )); do
+        ready_pids=()
+        for (( i=1; i<=n; i++ )); do
+            if (( at[$i] <= current_time && finished[$i] == 0 )); then
+                ready_pids+=($i)
+            fi
+        done
+        
+        if (( ${#ready_pids[@]} == 0 )); then
+            current_time=$((current_time + 1))
+            continue
+        fi
+        
+        # Find process with shortest burst time
+        min_bt=9999
+        selected_pid=-1
+        for pid in "${ready_pids[@]}"; do
+            if (( bt[$pid] < min_bt )); then
+                min_bt=${bt[$pid]}
+                selected_pid=$pid
+            fi
+        done
+        
+        # Execute process
+        current_time=$((current_time + bt[$selected_pid]))
+        ct[$selected_pid]=$current_time
+        finished[$selected_pid]=1
+        completed_processes=$((completed_processes + 1))
+    done
+    
+else
+    # Preemptive (SRT-F)
+    while (( completed_processes < n )); do
+        ready_pids=()
+        for (( i=1; i<=n; i++ )); do
+            if (( at[$i] <= current_time && finished[$i] == 0 )); then
+                ready_pids+=($i)
+            fi
+        done
+        
+        if (( ${#ready_pids[@]} == 0 )); then
+            current_time=$((current_time + 1))
+            continue
+        fi
+        
+        # Find process with shortest *remaining* burst time
+        min_rbt=9999
+        selected_pid=-1
+        for pid in "${ready_pids[@]}"; do
+            if (( rbt[$pid] < min_rbt )); then
+                min_rbt=${rbt[$pid]}
+                selected_pid=$pid
+            fi
+        done
+        
+        # Execute process for one time unit
+        rbt[$selected_pid]=$((rbt[$selected_pid] - 1))
+        current_time=$((current_time + 1))
+        
+        if (( rbt[$selected_pid] == 0 )); then
+            ct[$selected_pid]=$current_time
+            finished[$selected_pid]=1
+            completed_processes=$((completed_processes + 1))
+        fi
+    done
+fi
+
+# --- Final Calculations & Printing ---
+echo
+printf "%-5s | %-5s | %-5s | %-5s | %-5s | %-5s\n" "PID" "AT" "BT" "CT" "TAT" "WT"
+echo "---------------------------------------"
+for (( i=1; i<=n; i++ )); do
+    tat[$i]=$((ct[$i] - at[$i]))
+    wt[$i]=$((tat[$i] - bt[$i]))
+    
+    total_tat=$((total_tat + tat[$i]))
+    total_wt=$((total_wt + wt[$i]))
+    
+    printf "P%-4s | %-5s | %-5s | %-5s | %-5s | %-5s\n" "$i" "${at[$i]}" "${bt[$i]}" "${ct[$i]}" "${tat[$i]}" "${wt[$i]}"
+done
+
+avg_tat=$(echo "scale=2; $total_tat / $n" | bc)
+avg_wt=$(echo "scale=2; $total_wt / $n" | bc)
+
+echo -e "\nAverage Turnaround Time: $avg_tat"
+echo "Average Waiting Time: $avg_wt"
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiment 6: Round-Robin -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 6: Round-Robin Scheduling</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
+                    <div class="relative">
+<pre data-lang="Python (round_robin.py)">
+n = int(input("Enter total number of processes: "))
+pid, at, bt, rt, ct, tat, wt = [], [], [], [], [], [], []
+
+for i in range(n):
+    pid.append(i)
+    at.append(int(input(f"Enter arrival time of process P{pid[i]}: ")))
+    bt.append(int(input(f"Enter burst time of process P{pid[i]}: ")))
+    rt.append(bt[i])
+    ct.append(0)
+    tat.append(0)
+    wt.append(0)
+
+tq = int(input("Enter time quantum: "))
+
+# Sort by arrival time
+for i in range(n-1):
+    for j in range(n-i-1):
+        if at[j] > at[j+1]:
+            at[j], at[j+1] = at[j+1], at[j]
+            bt[j], bt[j+1] = bt[j+1], bt[j]
+            pid[j], pid[j+1] = pid[j+1], pid[j]
+            rt[j], rt[j+1] = rt[j+1], rt[j]
+
+time = 0
+ready_queue = []
+gantt = []
+i = 0 # index for sorted processes
+flag = 0 # completed processes
+
+# Add first arriving process
+ready_queue.append(pid[i])
+i += 1
+time = at[0]
+
+while(True):
+    if flag == n:
+        break
+    
+    if not ready_queue:
+        if i < n: # If processes are still to arrive
+            time = at[i]
+            ready_queue.append(pid[i])
+            i += 1
+        else: # No processes in queue and none to arrive
+            break
+        continue
+
+    p = ready_queue.pop(0)
+    
+    if rt[p] <= tq and rt[p] > 0:
+        time += rt[p]
+        gantt.append((f"P{p}", time))
+        rt[p] = 0
+        
+    elif rt[p] > tq:
+        rt[p] -= tq
+        time += tq
+        gantt.append((f"P{p}", time))
+
+    # Check for newly arrived processes
+    while i < n and at[i] <= time:
+        ready_queue.append(pid[i])
+        i += 1
+        
+    # Re-queue if not finished
+    if rt[p] > 0:
+        ready_queue.append(p)
+    elif rt[p] == 0:
+        flag += 1
+        ct[p] = time
+
+# Re-sort by original PID for calculation and printing
+for i in range(n-1):
+    for j in range(n-i-1):
+        if pid[j] > pid[j+1]:
+            pid[j], pid[j+1] = pid[j+1], pid[j]
+            at[j], at[j+1] = at[j+1], at[j]
+            bt[j], bt[j+1] = bt[j+1], bt[j]
+            ct[j], ct[j+1] = ct[j+1], ct[j]
+
+total_tat = 0
+total_wt = 0
+
+print("\nPID\tAT\tBT\tCT\tTAT\tWT")
+for i in range(n):
+    tat[i] = ct[i] - at[i]
+    wt[i] = tat[i] - bt[i]
+    total_tat += tat[i]
+    total_wt += wt[i]
+    print(f"P{pid[i]}\t{at[i]}\t{bt[i]}\t{ct[i]}\t{tat[i]}\t{wt[i]}")
+
+avg_tat = total_tat / n
+avg_wt = total_wt / n
+
+print(f"\nAverage Turn Around Time: {avg_tat:.2f}")
+print(f"Average Waiting Time: {avg_wt:.2f}")
+
+print("\nGantt Chart:")
+chart_str = ""
+time_str = "0"
+for item in gantt:
+    chart_str += f"| {item[0]} "
+    time_str += f"{' ' * len(chart_str.split('|')[-1])}{item[1]}"
+print(chart_str + "|")
+print(time_str)
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                    <div class="relative">
+<pre data-lang="Shell Script (round_robin.sh)">
+#!/bin/bash
+
+# Use indexed arrays, parallel to the Python script
+declare -a pid at bt rt ct tat wt
+declare -a ready_queue=()
+
+read -p "Enter total number of processes: " n
+for (( i=0; i<n; i++ )); do
+    pid[$i]=$i
+    read -p "Enter arrival time of process P${pid[$i]}: " at[$i]
+    read -p "Enter burst time of process P${pid[$i]}: " bt[$i]
+    rt[$i]=${bt[$i]}
+    ct[$i]=0
+    tat[$i]=0
+    wt[$i]=0
+done
+
+read -p "Enter time quantum: " tq
+
+# Bubble Sort by arrival time
+for (( i=0; i<n-1; i++ )); do
+    for (( j=0; j<n-i-1; j++ )); do
+        if (( at[j] > at[j+1] )); then
+            # Swap all parallel arrays
+            temp=${at[j]}; at[$j]=${at[j+1]}; at[$j+1]=$temp
+            temp=${bt[j]}; bt[$j]=${bt[j+1]}; bt[$j+1]=$temp
+            temp=${pid[j]}; pid[$j]=${pid[j+1]}; pid[$j+1]=$temp
+            temp=${rt[j]}; rt[$j]=${rt[j+1]}; rt[$j+1]=$temp
+        fi
+    done
+done
+
+time=0
+gantt_chart=""
+gantt_time="0"
+i=0 # index for sorted processes to arrive
+completed=0
+
+# Add first arriving process
+ready_queue+=(${pid[0]})
+time=${at[0]}
+i=1
+
+while (( completed < n )); do
+    if (( ${#ready_queue[@]} == 0 )); then
+        if (( i < n )); then # If processes are still to arrive
+            time=${at[$i]}
+            ready_queue+=(${pid[$i]})
+            i=$((i + 1))
+        else # No processes in queue and none to arrive
+            break
+        fi
+        continue
+    fi
+
+    # Dequeue process
+    p=${ready_queue[0]}
+    ready_queue=("${ready_queue[@]:1}") # Slice array from index 1
+
+    if (( rt[p] <= tq && rt[p] > 0 )); then
+        time=$((time + rt[p]))
+        rt[p]=0
+        
+    elif (( rt[p] > tq )); then
+        rt[p]=$((rt[p] - tq))
+        time=$((time + tq))
+    fi
+    
+    gantt_chart="$gantt_chart| P$p "
+    gantt_time="$gantt_time $time"
+
+    # Check for newly arrived processes
+    while (( i < n && at[i] <= time )); do
+        ready_queue+=(${pid[$i]})
+        i=$((i + 1))
+    done
+        
+    # Re-queue if not finished
+    if (( rt[p] > 0 )); then
+        ready_queue+=($p)
+    elif (( ${ct[p]} == 0 )); then # Only mark completion once
+        completed=$((completed + 1))
+        ct[p]=$time
+    fi
+done
+
+# Re-sort by original PID for printing
+for (( i=0; i<n-1; i++ )); do
+    for (( j=0; j<n-i-1; j++ )); do
+        if (( pid[j] > pid[j+1] )); then
+            # Swap all parallel arrays
+            temp=${pid[j]}; pid[$j]=${pid[j+1]}; pid[$j+1]=$temp
+            temp=${at[j]}; at[$j]=${at[j+1]}; at[$j+1]=$temp
+            temp=${bt[j]}; bt[$j]=${bt[j+1]}; bt[$j+1]=$temp
+            temp=${ct[j]}; ct[$j]=${ct[j+1]}; ct[$j+1]=$temp
+            temp=${rt[j]}; rt[$j]=${rt[j+1]}; rt[$j+1]=$temp # rt isn't needed but good for consistency
+        fi
+    done
+done
+
+total_tat=0
+total_wt=0
+
+echo -e "\nPID\tAT\tBT\tCT\tTAT\tWT"
+for (( i=0; i<n; i++ )); do
+    tat[$i]=$((ct[i] - at[i]))
+    wt[$i]=$((tat[i] - bt[i]))
+    total_tat=$((total_tat + tat[i]))
+    total_wt=$((total_wt + wt[i]))
+    echo -e "P${pid[$i]}\t${at[i]}\t${bt[i]}\t${ct[i]}\t${tat[$i]}\t${wt[$i]}"
+done
+
+avg_tat=$(echo "scale=2; $total_tat / $n" | bc)
+avg_wt=$(echo "scale=2; $total_wt / $n" | bc)
+
+echo -e "\nAverage Turn Around Time: $avg_tat"
+echo "Average Waiting Time: $avg_wt"
+
+echo -e "\nGantt Chart:"
+echo "$gantt_chart|"
+echo "$gantt_time"
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiment 7: Priority -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 7: Priority Scheduling</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
+                    <div class="relative">
+<pre data-lang="Python (priority.py)">
+def priority_scheduling(processes, choice, preemptive):
+    n = len(processes)
+    
+    # Store original burst time and priority for lookup
+    burst_time = {p[3]: p[1] for p in processes}
+    priority = {p[3]: p[2] for p in processes}
+    arrival_time = {p[3]: p[0] for p in processes}
+    
+    # Use remaining_bt indexed by original pid
+    remaining_bt = burst_time.copy()
+    
+    wt = {p[3]: 0 for p in processes}
+    tat = {p[3]: 0 for p in processes}
+    ct = {p[3]: 0 for p in processes}
+    
+    t = 0
+    completed = 0
+
+    def better_priority(p1_pri, p2_pri):
+        if choice == "high":
+            return p1_pri > p2_pri
+        else: # low
+            return p1_pri < p2_pri
+
+    if preemptive:
+        while completed != n:
+            idx = -1
+            best_pri = None
+            
+            # Find best priority process in ready queue
+            for p in processes:
+                pid = p[3] # Original PID
+                if remaining_bt[pid] > 0 and arrival_time[pid] <= t:
+                    if idx == -1 or better_priority(priority[pid], best_pri):
+                        idx = pid
+                        best_pri = priority[pid]
+            
+            if idx != -1:
+                remaining_bt[idx] -= 1
+                
+                if remaining_bt[idx] == 0:
+                    ct[idx] = t + 1
+                    completed += 1
+            # else: CPU is idle
+            
+            t += 1
+            
+    else: # Non-preemptive
+        while completed != n:
+            ready_processes = []
+            for p in processes:
+                pid = p[3]
+                if remaining_bt[pid] > 0 and arrival_time[pid] <= t:
+                    ready_processes.append(pid)
+            
+            if not ready_processes:
+                t += 1
+                continue
+
+            selected_idx = -1
+            best_pri = None
+            
+            # Find best priority in the ready queue
+            for pid in ready_processes:
+                if selected_idx == -1 or better_priority(priority[pid], best_pri):
+                    selected_idx = pid
+                    best_pri = priority[pid]
+            
+            # Run the selected process to completion
+            t += remaining_bt[selected_idx]
+            ct[selected_idx] = t
+            remaining_bt[selected_idx] = 0
+            completed += 1
+
+    # Calculate TAT and WT
+    for p in processes:
+        pid = p[3]
+        tat[pid] = ct[pid] - arrival_time[pid]
+        wt[pid] = tat[pid] - burst_time[pid]
+    
+    return ct, tat, wt
+
+# --- Main script ---
+n = int(input("Enter number of processes: "))
+processes = []
+for i in range(n):
+    at = int(input(f"Enter Arrival Time of P{i+1}: "))
+    bt = int(input(f"Enter Burst Time of P{i+1}: "))
+    pri = int(input(f"Enter Priority of P{i+1}: "))
+    processes.append((at, bt, pri, i+1)) # Store as (at, bt, pri, original_pid)
+
+choice = input("Priority scheme (high/low): ").strip().lower()
+preemptive_input = input("Preemptive? (y/n): ").strip().lower()
+preemptive = (preemptive_input == 'y')
+
+# Sort by AT for processing, but this is handled inside the algo
+# We just need the original PIDs
+
+ct, tat, wt = priority_scheduling(processes, choice, preemptive)
+
+total_tat = 0
+total_wt = 0
+
+# Print table
+print("\nProcess\tAT\tBT\tPri\tCT\tTAT\tWT")
+for p in processes:
+    pid = p[3]
+    at = p[0]
+    bt = p[1]
+    pri = p[2]
+    total_tat += tat[pid]
+    total_wt += wt[pid]
+    print(f"P{pid}\t{at}\t{bt}\t{pri}\t{ct[pid]}\t{tat[pid]}\t{wt[pid]}")
+
+avg_tat = total_tat / n
+avg_wt = total_wt / n
+
+print(f"\nAverage Turnaround Time (TAT): {avg_tat:.2f}")
+print(f"Average Waiting Time (WT): {avg_wt:.2f}")
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                    <div class="relative">
+<pre data-lang="Shell Script (priority.sh)">
+#!/bin/bash
+
+declare -A at bt pri rbt ct tat wt finished
+
+read -p "Enter number of processes: " n
+read -p "Priority scheme (high/low): " pri_choice
+pri_choice=$(echo "$pri_choice" | tr 'A-Z' 'a-z')
+read -p "Preemptive? (y/n): " preemptive_choice
+preemptive_choice=$(echo "$preemptive_choice" | tr 'A-Z' 'a-z')
+
+for (( i=1; i<=n; i++ )); do
+    read -p "Enter Arrival Time for P$i: " at[$i]
+    read -p "Enter Burst Time for P$i: " bt[$i]
+    read -p "Enter Priority for P$i: " pri[$i]
+    rbt[$i]=${bt[$i]}
+    finished[$i]=0
+done
+
+current_time=0
+completed_processes=0
+total_tat=0
+total_wt=0
+
+# Helper function to compare priorities
+# Usage: better_priority $pri1 $pri2
+# Returns 0 (true) if p1 is better, 1 (false) if p2 is better
+better_priority() {
+    local p1_pri=$1
+    local p2_pri=$2
+    if [[ "$pri_choice" == "high" ]]; then
+        (( p1_pri > p2_pri )) && return 0 || return 1
+    else
+        (( p1_pri < p2_pri )) && return 0 || return 1
+    fi
+}
+
+if [[ "$preemptive_choice" == "y" ]]; then
+    # Preemptive
+    while (( completed_processes < n )); do
+        ready_pids=()
+        for (( i=1; i<=n; i++ )); do
+            if (( at[$i] <= current_time && finished[$i] == 0 )); then
+                ready_pids+=($i)
+            fi
+        done
+        
+        if (( ${#ready_pids[@]} == 0 )); then
+            current_time=$((current_time + 1))
+            continue
+        fi
+        
+        selected_pid=-1
+        best_pri=-1
+        if [[ "$pri_choice" == "low" ]]; then best_pri=9999; fi
+
+        for pid in "${ready_pids[@]}"; do
+            if [[ $selected_pid -eq -1 ]] || ( better_priority ${pri[$pid]} $best_pri ); then
+                selected_pid=$pid
+                best_pri=${pri[$pid]}
+            fi
+        done
+        
+        rbt[$selected_pid]=$((rbt[$selected_pid] - 1))
+        current_time=$((current_time + 1))
+        
+        if (( rbt[$selected_pid] == 0 )); then
+            ct[$selected_pid]=$current_time
+            finished[$selected_pid]=1
+            completed_processes=$((completed_processes + 1))
+        fi
+    done
+else
+    # Non-Preemptive
+    while (( completed_processes < n )); do
+        ready_pids=()
+        for (( i=1; i<=n; i++ )); do
+            if (( at[$i] <= current_time && finished[$i] == 0 )); then
+                ready_pids+=($i)
+            fi
+        done
+        
+        if (( ${#ready_pids[@]} == 0 )); then
+            current_time=$((current_time + 1))
+            continue
+        fi
+        
+        selected_pid=-1
+        best_pri=-1
+        if [[ "$pri_choice" == "low" ]]; then best_pri=9999; fi
+
+        for pid in "${ready_pids[@]}"; do
+            if [[ $selected_pid -eq -1 ]] || ( better_priority ${pri[$pid]} $best_pri ); then
+                selected_pid=$pid
+                best_pri=${pri[$pid]}
+            fi
+        done
+        
+        current_time=$((current_time + rbt[$selected_pid]))
+        rbt[$selected_pid]=0
+        ct[$selected_pid]=$current_time
+        finished[$selected_pid]=1
+        completed_processes=$((completed_processes + 1))
+    done
+fi
+
+# --- Final Calculations & Printing ---
+echo
+printf "%-5s | %-5s | %-5s | %-5s | %-5s | %-5s | %-5s\n" "PID" "AT" "BT" "Pri" "CT" "TAT" "WT"
+echo "---------------------------------------------------"
+for (( i=1; i<=n; i++ )); do
+    tat[$i]=$((ct[$i] - at[$i]))
+    wt[$i]=$((tat[$i] - bt[$i]))
+    
+    total_tat=$((total_tat + tat[$i]))
+    total_wt=$((total_wt + wt[$i]))
+    
+    printf "P%-4s | %-5s | %-5s | %-5s | %-5s | %-5s | %-5s\n" "$i" "${at[$i]}" "${bt[$i]}" "${pri[$i]}" "${ct[$i]}" "${tat[$i]}" "${wt[$i]}"
+done
+
+avg_tat=$(echo "scale=2; $total_tat / $n" | bc)
+avg_wt=$(echo "scale=2; $total_wt / $n" | bc)
+
+echo -e "\nAverage Turnaround Time: $avg_tat"
+echo "Average Waiting Time: $avg_wt"
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiment 8: Peterson's Algorithm -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 8: Peterson's Algorithm</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
+                    <div class="relative">
+<pre data-lang="Python (petersons.py)">
+import time
+
+# Shared variables
+flag = [False, False]
+turn = 0
+
+def enter_cs(p, other, timeout=2.0):
+    global flag, turn
+    
+    # Step 1: Raise flag
+    flag[p] = True
+    # Step 2: Set turn
+    turn = other
+    
+    start = time.time()
+    
+    # Step 3: Busy-wait
+    while flag[other] and turn == other:
+        # Check for timeout (for this simulation)
+        if time.time() - start > timeout:
+            print(f"P{p} timed out waiting!")
+            return False
+        
+        # Politely wait
+        time.sleep(0.01)
+        
+    # If loop exits, it's safe to enter
+    return True
+
+def exit_cs(p):
+    global flag
+    # Step 4: Lower flag
+    flag[p] = False
+
+def p0():
+    other = 1
+    print("\n--> P0 trying to enter...")
+    if not enter_cs(0, other):
+        print("P0 couldn't enter the CS (blocked).")
+        exit_cs(0) # Clean up flag
+        return
+
+    print("P0 ENTERED Critical Section.")
+    print("Press Enter now to PREEMPT P0 (let P1 try), or type anything then Enter to finish P0:")
+    user = input().strip()
+    
+    if user == "":
+        print("\n--- P0 PREEMPTED. Trying P1... ---")
+        if enter_cs(1, 0):
+            print("!!! MUTUAL EXCLUSION FAILED! P1 ENTERED. !!!")
+            time.sleep(0.5)
+            print("P1 EXITING Critical Section.")
+            exit_cs(1)
+        else:
+            print("P1 couldn't enter the CS (blocked by P0). MUTUAL EXCLUSION SUCCESSFUL.")
+        print("--- P0 RESUMES and finishes now. ---")
+    else:
+        print("P0 finishing work...")
+
+    print("P0 EXITING Critical Section.")
+    exit_cs(0)
+    print("P0 ended.")
+
+def p1():
+    other = 0
+    print("\n--> P1 trying to enter...")
+    if not enter_cs(1, other):
+        print("P1 couldn't enter the CS (blocked).")
+        exit_cs(1) # Clean up flag
+        return
+
+    print("P1 ENTERED Critical Section.")
+    print("Press Enter now to PREEMPT P1 (let P0 try), or type anything then Enter to finish P1:")
+    user = input().strip()
+    
+    if user == "":
+        print("\n--- P1 PREEMPTED. Trying P0... ---")
+        if enter_cs(0, 1):
+            print("!!! MUTUAL EXCLUSION FAILED! P0 ENTERED. !!!")
+            time.sleep(0.5)
+            print("P0 EXITING Critical Section.")
+            exit_cs(0)
+        else:
+            print("P0 couldn't enter the CS (blocked by P1). MUTUAL EXCLUSION SUCCESSFUL.")
+        print("--- P1 RESUMES and finishes now. ---")
+    else:
+        print("P1 finishing work...")
+
+    print("P1 EXITING Critical Section.")
+    exit_cs(1)
+    print("P1 ended.")
+
+def main():
+    try:
+        num = int(input("Enter number of processes you want to run (1 or 2): "))
+    except ValueError:
+        num = 0
+
+    if num == 1:
+        print("\nOnly 1 process. Peterson's solution not needed.")
+        return
+    if num != 2:
+        print("\nError: Only up to 2 processes supported.")
+        return
+
+    try:
+        first = int(input("Which process do you want to run first? (0 for P0, 1 for P1): "))
+    except ValueError:
+        first = 0
+
+    if first == 0:
+        p0()
+    elif first == 1:
+        p1()
+    else:
+        print("Invalid choice, starting P0.")
+        p0()
+
+if __name__ == "__main__":
+    main()
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                    <div class="relative">
+<pre data-lang="Shell Script (petersons.sh)">
+#!/bin/bash
+
+# Shared variables
+flag=(0 0) # 0 = False, 1 = True
+turn=0
+
+# p, other
+enter_cs() {
+    local p=$1
+    local other=$2
+    
+    flag[$p]=1
+    turn=$other
+    echo "P$p sets flag=1, turn=$other"
+}
+
+# p, other
+# Returns 0 (success) if BLOCKED
+# Returns 1 (failure) if CLEAR
+check_cs() {
+    local p=$1
+    local other=$2
+    
+    if [[ ${flag[$other]} -eq 1 && $turn -eq $other ]]; then
+        return 0 # BLOCKED
+    else
+        return 1 # CLEAR
+    fi
+}
+
+# p
+exit_cs() {
+    local p=$1
+    flag[$p]=0
+    echo "P$p sets flag=0"
+}
+
+p0() {
+    echo -e "\n--> P0 trying to enter..."
+    enter_cs 0 1
+    
+    if ! check_cs 0 1; then
+        echo "P0 ENTERED Critical Section."
+        read -r -p "Press Enter now to PREEMPT P0 (let P1 try), or type anything then Enter to finish P0: " user
+        
+        if [[ -z "$user" ]]; then
+            echo -e "\n--- P0 PREEMPTED. Trying P1... ---"
+            enter_cs 1 0
+            if ! check_cs 1 0; then
+                echo "!!! MUTUAL EXCLUSION FAILED! P1 ENTERED. !!!"
+                exit_cs 1
+            else
+                echo "P1 can't enter the CS (blocked by P0). MUTUAL EXCLUSION SUCCESSFUL."
+            fi
+            echo "--- P0 RESUMES and finishes now. ---"
+        else
+            echo "P0 finishing work..."
+        fi
+        
+        echo "P0 EXITING Critical Section."
+        exit_cs 0
+    else
+        echo "P0 couldn't enter the CS (blocked)."
+        exit_cs 0 # Clean up
+    fi
+    echo "P0 ended."
+}
+
+p1() {
+    echo -e "\n--> P1 trying to enter..."
+    enter_cs 1 0
+    
+    if ! check_cs 1 0; then
+        echo "P1 ENTERED Critical Section."
+        read -r -p "Press Enter now to PREEMPT P1 (let P0 try), or type anything then Enter to finish P1: " user
+        
+        if [[ -z "$user" ]]; then
+            echo -e "\n--- P1 PREEMPTED. Trying P0... ---"
+            enter_cs 0 1
+            if ! check_cs 0 1; then
+                echo "!!! MUTUAL EXCLUSION FAILED! P0 ENTERED. !!!"
+                exit_cs 0
+            else
+                echo "P0 can't enter the CS (blocked by P1). MUTUAL EXCLUSION SUCCESSFUL."
+            fi
+            echo "--- P1 RESUMES and finishes now. ---"
+        else
+            echo "P1 finishing work..."
+        fi
+        
+        echo "P1 EXITING Critical Section."
+        exit_cs 1
+    else
+        echo "P1 couldn't enter the CS (blocked)."
+        exit_cs 1 # Clean up
+    fi
+    echo "P1 ended."
+}
+
+main() {
+    echo "Enter number of processes you want to run (1 or 2):"
+    read -r num
+    
+    if [[ "$num" -eq 1 ]]; then
+        echo -e "\nOnly 1 process. Peterson's solution not needed."
+        exit 0
+    fi
+    
+    if [[ "$num" -ne 2 ]]; then
+        echo -e "\nError: Only 2 processes supported."
+        exit 1
+    fi
+    
+    echo "Which process do you want to run first? (0 for P0, 1 for P1):"
+    read -r first
+    
+    if [[ "$first" -eq 0 ]]; then
+        p0
+    else
+        p1
+    fi
+}
+
+main
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiment 9: Producer-Consumer -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 9: Producer-Consumer</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
+                    <div class="relative">
+<pre data-lang="Python (producer_consumer.py)">
+# 10-slot buffer
+buf = [0] * 10
+mutex = 1
+empty = 10
+full = 0
+
+# These are blocking, "busy-wait" semaphores
+def wait(s):
+    while s <= 0:
+        pass # Wait
+    return s - 1
+
+def signal(s):
+    return s + 1
+
+# Note: The buffer logic in the PDF is slightly incorrect
+# The semaphore logic should be outside the buffer functions
+# A more correct implementation is:
+
+def producer():
+    global mutex, empty, full, buf
+    
+    global empty
+    empty = wait(empty) # Wait for an empty slot
+    
+    global mutex
+    mutex = wait(mutex) # Lock the buffer
+    
+    # Critical Section
+    print("Producer is producing...")
+    buf[full] = 1 # 'full' acts as the 'in' index
+    print("Producer has produced one item.")
+    # End Critical Section
+    
+    mutex = signal(mutex) # Unlock the buffer
+    
+    global full
+    full = signal(full) # Signal a full slot
+
+def consumer():
+    global mutex, empty, full, buf
+    
+    global full
+    full = wait(full) # Wait for a full slot
+    
+    global mutex
+    mutex = wait(mutex) # Lock the buffer
+    
+    # Critical Section
+    print("Consumer is consuming...")
+    # 'full' also acts as the 'out' index here (LIFO/Stack)
+    buf[full] = 0 # 'full' is 0-indexed, so full=1 means index 0
+    print("Consumer has consumed one item.")
+    # End Critical Section
+    
+    mutex = signal(mutex) # Unlock the buffer
+    
+    global empty
+    empty = signal(empty) # Signal an empty slot
+
+def print_buffer_status():
+    print(f"\nBuffer Status: Full slots: {full}, Empty slots: {empty}")
+    print(f"Buffer Contents: {' '.join(map(str, buf))}")
+
+# Main interactive loop
+print("--- Producer-Consumer Simulation ---")
+print_buffer_status()
+while(True):
+    print("\n---- Menu ----")
+    print("1 -> Produce")
+    print("2 -> Consume")
+    print("3 -> Exit")
+    
+    try:
+        choice = int(input("Enter your choice: "))
+    except ValueError:
+        choice = 0
+
+    if choice == 1:
+        if empty > 0: # Check if producer *can* run
+            producer()
+        else:
+            print("Buffer is full. Producer is waiting.")
+    elif choice == 2:
+        if full > 0: # Check if consumer *can* run
+            consumer()
+        else:
+            print("Buffer is empty. Consumer is waiting.")
+    elif choice == 3:
+        print("Exiting simulation.")
+        break
+    else:
+        print("Invalid choice.")
+    
+    print_buffer_status()
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                    <div class="relative">
+<pre data-lang="Shell Script (producer_consumer.sh)">
+#!/bin/bash
+
+# Shared buffer and semaphores
+buf=(0 0 0 0 0 0 0 0 0 0)
+full=0
+empty=10
+mutex=1
+
+# Helper function to print the buffer
+print_buffer() {
+    echo "Buffer Status: Full slots: $full, Empty slots: $empty, Mutex: $mutex"
+    echo "Buffer Contents: ${buf[*]}"
+}
+
+# wait(semaphore_name)
+wait() {
+    local s_name=$1
+    eval "s=\$$s_name"
+    
+    while [[ $s -le 0 ]]; do
+        echo "Process is waiting... ($s_name is $s)"
+        sleep 1
+        eval "s=\$$s_name"
+    done
+    
+    s=$((s - 1))
+    eval "$s_name=$s"
+}
+
+# signal(semaphore_name)
+signal() {
+    local s_name=$1
+    eval "s=\$$s_name"
+    s=$((s + 1))
+    eval "$s_name=$s"
+}
+
+producer() {
+    if [[ $empty -le 0 ]]; then
+        echo "Buffer is full. Producer is waiting."
+        return
+    fi
+    
+    wait empty
+    wait mutex
+    
+    # Critical Section
+    echo "Producer is producing..."
+    buf[$full]=1
+    echo "Producer has produced one item."
+    # End Critical Section
+    
+    signal mutex
+    signal full
+}
+
+consumer() {
+    if [[ $full -le 0 ]]; then
+        echo "Buffer is empty. Consumer is waiting."
+        return
+    fi
+
+    wait full
+    wait mutex
+    
+    # Critical Section
+    echo "Consumer is consuming..."
+    # This logic consumes from the "end" (LIFO)
+    buf[$((full - 1))]=0 
+    echo "Consumer has consumed one item."
+    # End Critical Section
+    
+    signal mutex
+    signal empty
+}
+
+# Main interactive loop
+echo "--- Producer-Consumer Simulation ---"
+print_buffer
+while true; do
+    echo -e "\n---- Menu ----"
+    echo "1 -> Produce"
+    echo "2 -> Consume"
+    echo "3 -> Exit"
+    read -p "Enter choice: " choice
+    
+    case $choice in
+        1) producer ;;
+        2) consumer ;;
+        3) echo "Exiting simulation."; break ;;
+        *) echo "Invalid choice." ;;
+    esac
+    
+    print_buffer
+done
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiment 10: Reader-Writer -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 10: Reader-Writer Problem</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
+                    <div class="relative">
+<pre data-lang="Python (reader_writer.py)">
+wrt = 1
+readcount = 0
+mutex = 1
+
+# Non-blocking wait: Returns (Success, NewValue)
+def wait(S):
+    if S <= 0:
+        return False, S
+    else:
+        return True, S - 1
+
+def signal(S):
+    return S + 1
+
+def writer():
+    global wrt
+    
+    success, wrt_new = wait(wrt)
+    if not success:
+        print("-> Writer can't enter now, resource busy.")
+        return
+    
+    wrt = wrt_new
+    
+    # --- Critical Section ---
+    print("Writer is writing...")
+    # --- End Critical Section ---
+    
+    wrt = signal(wrt)
+    print("Writer has finished writing...")
+
+def reader():
+    global wrt, mutex, readcount
+    
+    # --- Reader Entry Protocol ---
+    success, mutex_new = wait(mutex)
+    if not success:
+        print("-> Reader waiting (can't access readcount).")
+        return
+    mutex = mutex_new
+    
+    readcount += 1
+    if readcount == 1: # First reader in
+        success, wrt_new = wait(wrt) # Try to lock out writers
+        if not success:
+            print("-> Reader waiting (writer active).")
+            readcount -= 1 # Rollback
+            mutex = signal(mutex)
+            return
+        wrt = wrt_new
+        
+    mutex = signal(mutex)
+    # --- End Entry Protocol ---
+
+    # --- Critical Section ---
+    print(f"Reader started reading. Total readers: {readcount}")
+    # Simulating work
+    print("\n--- Reader is active ---")
+    print("1 -> Add another reader")
+    print("2 -> Add a writer (will fail)")
+    print("3 -> Stop reading (this reader finishes)")
+    
+    while True:
+        try:
+            choice = int(input("Reader choice: "))
+        except ValueError:
+            choice = 0
+            
+        if choice == 1:
+            # Simulate another reader arriving
+            # This is a shortcut for the main menu's reader() call
+            print("-> Simulating another reader...")
+            reader()
+            print(f"Total readers now: {readcount}")
+        elif choice == 2:
+            # Simulate a writer arriving
+            print("-> Simulating a writer...")
+            writer() # This will fail and print "Writer can't enter"
+        elif choice == 3:
+            break
+        else:
+            print("Invalid choice (1, 2, or 3)")
+    
+    # --- End Critical Section ---
+    
+    # --- Reader Exit Protocol ---
+    success, mutex_new = wait(mutex)
+    if not success: # Should not happen, but good to check
+        pass
+    mutex = mutex_new
+    
+    readcount -= 1
+    print(f"Reader stops reading. Remaining readers: {readcount}")
+    if readcount == 0: # Last reader out
+        wrt = signal(wrt) # Unlock for writers
+        
+    mutex = signal(mutex)
+    # --- End Exit Protocol ---
+
+
+# Main interactive loop
+print("--- Reader-Writer Simulation ---")
+while(True):
+    print("\n---- Main Menu ----")
+    print("1 -> Add a Reader")
+    print("2 -> Add a Writer")
+    print("3 -> Exit")
+    
+    try:
+        choice = int(input("Enter your choice: "))
+    except ValueError:
+        choice = 0
+
+    if choice == 1:
+        reader()
+    elif choice == 2:
+        writer()
+    elif choice == 3:
+        print("Exiting simulation.")
+        break
+    else:
+        print("Invalid choice.")
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                    <div class="relative">
+<pre data-lang="Shell Script (reader_writer.sh)">
+#!/bin/bash
+
+# Semaphores
+wrt=1
+readcount=0
+mutex=1
+
+# Non-blocking wait(semaphore_name)
+# Returns 0 for success, 1 for failure
+wait() {
+    local s_name=$1
+    eval "s=\$$s_name"
+    
+    if [[ $s -le 0 ]]; then
+        return 1 # Failure
+    fi
+    
+    s=$((s - 1))
+    eval "$s_name=$s"
+    return 0 # Success
+}
+
+# signal(semaphore_name)
+signal() {
+    local s_name=$1
+    eval "s=\$$s_name"
+    s=$((s + 1))
+    eval "$s_name=$s"
+}
+
+writer() {
+    if wait wrt; then
+        # --- Critical Section ---
+        echo "Writer is writing..."
+        sleep 1
+        # --- End Critical Section ---
+        signal wrt
+        echo "Writer has finished writing..."
+    else
+        echo "-> Writer can't enter now, resource busy."
+    fi
+}
+
+reader() {
+    if ! wait mutex; then
+        echo "-> Reader waiting (can't access readcount)."
+        return
+    fi
+    
+    readcount=$((readcount + 1))
+    if [[ $readcount -eq 1 ]]; then
+        if ! wait wrt; then # Try to lock out writers
+            echo "-> Reader waiting (writer active)."
+            readcount=$((readcount - 1)) # Rollback
+            signal mutex
+            return
+        fi
+    fi
+    
+    signal mutex
+    
+    # --- Critical Section ---
+    echo "Reader started reading. Total readers: $readcount"
+    
+    echo "--- Reader is active ---"
+    echo "1 -> Add another reader"
+    echo "2 -> Add a writer (will fail)"
+    echo "3 -> Stop reading (this reader finishes)"
+    
+    while true; do
+        read -p "Reader choice: " rchoice
+        case $rchoice in
+            1) reader ;; # Simulate another reader
+            2) writer ;; # Simulate a writer (will fail)
+            3) break ;;
+            *) echo "Invalid choice (1, 2, or 3)" ;;
+        esac
+    done
+    
+    # --- End Critical Section ---
+    
+    # --- Exit Protocol ---
+    wait mutex # We know this will succeed
+    readcount=$((readcount - 1))
+    echo "Reader stops reading. Remaining readers: $readcount"
+    if [[ $readcount -eq 0 ]]; then
+        signal wrt # Last reader out
+    fi
+    signal mutex
+}
+
+# Main interactive loop
+echo "--- Reader-Writer Simulation ---"
+while true; do
+    echo -e "\n---- Main Menu ----"
+    echo "1 -> Add a Reader"
+    echo "2 -> Add a Writer"
+    echo "3 -> Exit"
+    read -p "Enter your choice: " choice
+    
+    case $choice in
+        1) reader ;;
+        2) writer ;;
+        3) echo "Exiting simulation."; break ;;
+        *) echo "Invalid choice." ;;
+    esac
+done
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiment 11: Banker's Algorithm -->
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <button class="accordion-toggle flex justify-between items-center w-full p-5 font-semibold text-left text-gray-800 hover:bg-gray-50 focus:outline-none">
+                    <span>Experiment 11: Banker's Algorithm</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
+                    <div class="relative">
+<pre data-lang="Shell Script (bankers_algorithm.sh)">
+#!/bin/bash
+
+# --- Vector Math Helper Functions ---
+# leq(a, b): Returns 1 if (a <= b) element-wise, 0 otherwise
+leq() {
+  local a=($1) b=($2) i
+  for ((i=0;i<${#a[@]};i++)); do
+    if (( a[i] > b[i] )); then echo 0; return; fi
+  done
+  echo 1
+}
+
+# add(a, b): Returns vector a + b
+add() {
+  local a=($1) b=($2) out=() i
+  for ((i=0;i<${#a[@]};i++)); do out+=($(( a[i] + b[i] ))); done
+  echo "${out[@]}"
+}
+
+# sub(a, b): Returns vector a - b
+sub() {
+  local a=($1) b=($2) out=() i
+  for ((i=0;i<${#a[@]};i++)); do out+=($(( a[i] - b[i] ))); done
+  echo "${out[@]}"
+}
+
+# --- Safety Algorithm ---
+# Populates global SAFE, SEQ, and avail_after_when_executed
+safety_sequence_rolling() {
+  local available_str="$1"
+  shift
+  local -n allocation_ref=$1
+  shift
+  local -n need_ref=$1
+  local n="${#allocation_ref[@]}"
+  local work="$available_str"
+  local -a finished
+  local -a seq
+  local k=0
+  declare -gA avail_after_when_executed # Stores results
+  local count=0
+
+  while (( count < n )); do
+    local found=0
+    local jump
+    for ((jump=0;jump<n;jump++)); do
+      local i=$(( (k + jump) % n ))
+      if [[ "${finished[$i]}" != "1" ]]; then
+        local need_i="${need_ref[$i]}"
+        local ok=$(leq "$need_i" "$work")
+        if [[ "$ok" -eq 1 ]]; then
+          local new_work="$(add "$work" "${allocation_ref[$i]}")"
+          finished[$i]=1
+          seq+=("$i")
+          avail_after_when_executed[$i]="$new_work"
+          work="$new_work"
+          k=$(( (i + 1) % n ))
+          found=1
+          ((count++))
+          break
+        fi
+      fi
+    done
+    if [[ "$found" -eq 0 ]]; then
+      SAFE=0
+      SEQ=("${seq[@]}")
+      return
+    fi
+  done
+  SAFE=1
+  SEQ=("${seq[@]}")
+}
+
+# --- Helper functions for printing ---
+print_vec_like_pylist() {
+  local a=($1) i out="["
+  for ((i=0;i<${#a[@]};i++)); do
+    out+="${a[i]}"
+    if (( i < ${#a[@]}-1 )); then out+=", "; fi
+  done
+  out+="]"
+  echo "$out"
+}
+
+print_table_P1_to_Pn() {
+  local -n allocation_ref=$1
+  local -n maxm_ref=$2
+  local -n need_ref=$3
+  local title="$4"
+  local n="${#allocation_ref[@]}"
+  echo
+  echo "--- $title ---"
+  printf "%-8s | %-12s | %-12s | %-22s | %s\n" "Process" "Allocation" "Max Need" "Current Availability" "Remaining Need"
+  printf "%0.s-" {1..95}; echo
+  local i
+  for ((i=0;i<n;i++)); do
+    local alloc_str="$(print_vec_like_pylist "${allocation_ref[$i]}")"
+    local max_str="$(print_vec_like_pylist "${maxm_ref[$i]}")"
+    local need_str="$(print_vec_like_pylist "${need_ref[$i]}")"
+    local avail_str="${avail_after_when_executed[$i]:--}"
+    if [[ "$avail_str" != "-" ]]; then
+      avail_str="$(print_vec_like_pylist "$avail_str")"
+    fi
+    printf "P%-7d | %-12s | %-12s | %-22s | %s\n" "$((i+1))" "$alloc_str" "$max_str" "$avail_str" "$need_str"
+  done
+}
+
+# --- Helper functions for reading input ---
+read_vec() {
+  local prompt="$1" m="$2" line
+  while true; do
+    read -p "$prompt" -r line
+    set -- $line
+    if [[ $# -ne $m ]]; then
+      echo "Enter exactly $m integers."
+      continue
+    fi
+    local ok=1
+    for v in "$@"; do
+      if ! [[ "$v" =~ ^-?[0-9]+$ ]]; then ok=0; break; fi
+    done
+    if [[ $ok -eq 0 ]]; then
+      echo "Enter integers separated by spaces."
+      continue
+    fi
+    echo "$line"
+    return
+  done
+}
+
+read_matrix() {
+  local prompt_row="$1" n="$2" m="$3" i row
+  local -n out=$4
+  out=()
+  for ((i=0;i<n;i++)); do
+    row="$(read_vec "$prompt_row P$((i+1)): " "$m")"
+    out+=("$row")
+  done
+}
+
+# --- Main Program Logic ---
+main() {
+  echo "=== Banker's Algorithm (P1..Pn Table + Request Handling) ==="
+  read -p "Enter n (processes) and m (resource types): " n m
+
+  available="$(read_vec "Enter Available vector ($m ints): " "$m")"
+
+  declare -a allocation
+  declare -a maxm
+  declare -a need
+  read_matrix "Enter Allocation for" "$n" "$m" allocation
+  read_matrix "Enter Max Need for" "$n" "$m" maxm
+
+  need=()
+  local i
+  for ((i=0;i<n;i++)); do
+    need+=("$(sub "${maxm[$i]}" "${allocation[$i]}")")
+  done
+
+  safety_sequence_rolling "$available" allocation need
+  if [[ $SAFE -ne 1 ]]; then
+    print_table_P1_to_Pn allocation maxm need "Table (Initial, P1..Pn order)"
+    echo
+    echo "System is NOT in a SAFE state initially. Exiting."
+    exit 0
+  fi
+
+  print_table_P1_to_Pn allocation maxm need "Table (Initial, P1..Pn order)"
+  seq_str=""
+  for idx in "${SEQ[@]}"; do
+    p="P$((idx+1))"
+    if [[ -z "$seq_str" ]]; then seq_str="$p"; else seq_str="$seq_str → $p"; fi
+  done
+  echo
+  echo "Initial Safe Sequence = $seq_str"
+  
+  read -p $'\n''User Input 5: Any Request? (Yes/No): ' opt
+  opt_lower="$(echo "$opt" | tr '[:upper:]' '[:lower:]')"
+  if [[ "$opt_lower" != "yes" && "$opt_lower" != "y" ]]; then
+    echo
+    echo "No request processed. Done."
+    exit 0
+  fi
+
+  while true; do
+    read -p "User Input 6: Enter requesting process index Pi (1..$n): " pi_1
+    if [[ "$pi_1" =~ ^[0-9]+$ ]] && (( pi_1>=1 && pi_1<=n )); then break; fi
+    echo "Invalid index."
+  done
+  pi=$((pi_1-1))
+  req="$(read_vec "Enter Request vector for P$pi_1 ($m ints): " "$m")"
+
+  need_pi="${need[$pi]}"
+  ok1=$(leq "$req" "$need_pi")
+  if [[ $ok1 -ne 1 ]]; then
+    echo
+    echo "DENIED: Request exceeds Need of P$pi_1."
+    exit 0
+  fi
+  ok2=$(leq "$req" "$available")
+  if [[ $ok2 -ne 1 ]]; then
+    echo
+    echo "WAIT: Request exceeds current Available. Not enough resources now."
+    exit 0
+  fi
+
+  available_new="$(sub "$available" "$req")"
+  allocation_new=("${allocation[@]}")
+  need_new=("${need[@]}")
+  allocation_new[$pi]="$(add "${allocation_new[$pi]}" "$req")"
+  need_new[$pi]="$(sub "${need_new[$pi]}" "$req")"
+
+  safety_sequence_rolling "$available_new" allocation_new need_new
+  print_table_P1_to_Pn allocation_new maxm need_new "Table After Tentative Grant (P1..Pn order)"
+
+  if [[ $SAFE -eq 1 ]]; then
+    seq_str=""
+    for idx in "${SEQ[@]}"; do
+      p="P$((idx+1))"
+      if [[ -z "$seq_str" ]]; then seq_str="$p"; else seq_str="$seq_str → $p"; fi
+    done
+    echo
+    echo "Request CAN be granted. System remains SAFE."
+    echo "Safe Sequence after granting = $seq_str"
+  else
+    echo
+    echo "Request would lead to an UNSAFE state. DENIED."
+  fi
+}
+
+main
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                    <div class="relative">
+<pre data-lang="Python (bankers_algorithm.py)">
+def leq(a, b): return all(x <= y for x, y in zip(a, b)) 
+def add(a, b): return [x+y for x, y in zip(a, b)] 
+def sub(a, b): return [x-y for x, y in zip(a, b)] 
+ 
+def safety_sequence_rolling(available, allocation, need): 
+    n = len(allocation) 
+    work = available[:] 
+    finished = [False]*n 
+    seq = [] 
+    k = 0 
+    avail_after_when_executed = {} 
+    while len(seq) < n: 
+        found = False 
+        for jump in range(n): 
+            i = (k + jump) % n 
+ 
+            if not finished[i] and leq(need[i], work): 
+                new_work = add(work, allocation[i]) 
+                finished[i] = True 
+                seq.append(i) 
+                avail_after_when_executed[i] = new_work[:]   
+                work = new_work 
+                k = (i + 1) % n 
+                found = True 
+                break 
+        if not found: 
+            return False, seq, avail_after_when_executed 
+    return True, seq, avail_after_when_executed 
+ 
+def print_table_P1_to_Pn(allocation, maxm, need, avail_after_when_executed, title): 
+    n = len(allocation) 
+    print(f"\n--- {title} ---") 
+    print(f"{'Process':<8} | {'Allocation':<12} | {'Max Need':<12} | {'Current Availability':<22} | {'Remaining Need'}") 
+    print("-"*95) 
+    for i in range(n): 
+        avail_str = str(avail_after_when_executed.get(i, "-")) 
+        print(f"P{i+1:<7} | {str(allocation[i]):<12} | {str(maxm[i]):<12} | {avail_str:<22} | {str(need[i])}") 
+ 
+def read_vec(prompt, m): 
+    while True: 
+        try: 
+            v = list(map(int, input(prompt).split())) 
+            if len(v) != m: print(f"Enter exactly {m} integers."); continue 
+            return v 
+        except ValueError: 
+            print("Enter integers separated by spaces.") 
+ 
+def read_matrix(prompt_row, n, m): 
+    mat = [] 
+    for i in range(n): 
+        mat.append(read_vec(f"{prompt_row} P{i+1}: ", m)) 
+    return mat 
+ 
+def main(): 
+    print("=== Banker's Algorithm (P1..Pn Table + Request Handling) ===") 
+    n, m = map(int, input("Enter n (processes) and m (resource types): ").split()) 
+ 
+    available = read_vec(f"Enter Available vector ({m} ints): ", m) 
+    allocation = read_matrix("Enter Allocation for", n, m) 
+    maxm = read_matrix("Enter Max Need for", n, m) 
+    need = [sub(maxm[i], allocation[i]) for i in range(n)] 
+ 
+    safe, seq, avail_after = safety_sequence_rolling(available, allocation, need) 
+    if not safe: 
+        print_table_P1_to_Pn(allocation, maxm, need, avail_after, "Table (Initial, P1..Pn order)") 
+        print("\nSystem is NOT in a SAFE state initially. Exiting.") 
+        return 
+ 
+    print_table_P1_to_Pn(allocation, maxm, need, avail_after, "Table (Initial, P1..Pn order)") 
+    print("\nInitial Safe Sequence = " + " → ".join(f"P{i+1}" for i in seq)) 
+ 
+    opt = input("\nUser Input 5: Any Request? (Yes/No): ").strip().lower() 
+    if opt not in ("yes", "y"): 
+        print("\nNo request processed. Done.") 
+        return 
+ 
+    while True: 
+        try: 
+            pi_1 = int(input(f"User Input 6: Enter requesting process index Pi (1..{n}): ")) 
+ 
+            if 1 <= pi_1 <= n: break 
+            print("Invalid index.") 
+        except ValueError: 
+            print("Enter an integer.") 
+    pi = pi_1 - 1 
+    req = read_vec(f"Enter Request vector for P{pi_1} ({m} ints): ", m) 
+ 
+    if not leq(req, need[pi]): 
+        print(f"\nDENIED: Request exceeds Need of P{pi_1}.") 
+        return 
+    if not leq(req, available): 
+        print(f"\nWAIT: Request exceeds current Available. Not enough resources now.") 
+        return 
+ 
+    available_new = sub(available, req) 
+    allocation_new = [row[:] for row in allocation] 
+    need_new = [row[:] for row in need] 
+    allocation_new[pi] = add(allocation_new[pi], req) 
+    need_new[pi] = sub(need_new[pi], req) 
+ 
+    safe2, seq2, avail_after2 = safety_sequence_rolling(available_new, allocation_new, need_new) 
+    print_table_P1_to_Pn(allocation_new, maxm, need_new, avail_after2, "Table After Tentative Grant (P1..Pn order)") 
+ 
+    if safe2: 
+        print("\nRequest CAN be granted. System remains SAFE.") 
+        print("Safe Sequence after granting = " + " → ".join(f"P{i+1}" for i in seq2)) 
+    else: 
+        print("\nRequest would lead to an UNSAFE state. DENIED.") 
+ 
+if __name__ == "__main__": 
+    main()
+</pre>
+                        <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End accordion-container -->
+    </div> <!-- End container -->
+
+    <script>
+        // --- Accordion Logic ---
+        const toggles = document.querySelectorAll('.accordion-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const chevron = toggle.querySelector('svg');
+
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    chevron.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.display = 'block';
+                    chevron.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // --- Copy Button Logic ---
+        const copyButtons = document.querySelectorAll('.copy-button');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Find the <pre> tag. It's the button's previous sibling.
+                const pre = button.previousElementSibling;
+                const code = pre.innerText;
+
+                // Use the 'execCommand' method for broad compatibility,
+                // especially in sandboxed iframes.
+                const textArea = document.createElement('textarea');
+                textArea.value = code;
+                
+                // Make the textarea invisible
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-9999px';
+                textArea.style.top = '-9999px';
+                
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    button.innerText = 'Copied!';
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                    button.innerText = 'Failed!';
+                }
+                
+                document.body.removeChild(textArea);
+                
+                // Reset button text after 2 seconds
+                setTimeout(() => {
+                    button.innerText = 'Copy';
+                }, 2000);
+            });
+        });
+    </script>
+
+</body>
+</html>
