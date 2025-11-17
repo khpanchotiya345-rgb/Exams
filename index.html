@@ -53,9 +53,24 @@
                     <span>Experiment 2: Basic Shell Scripts</span>
                     <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
-                <div class="accordion-content p-5 border-t border-gray-200">
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
                     <div class="relative">
 <pre data-lang="Shell Script (exp2_scripts.sh)">#!/bin/bash
+
+# Q.1: Welcome Message
+echo "--- Q.1: Welcome Message ---"
+echo "Enter your user name:"
+read username
+echo "welcome ${username}!"
+echo "****************************"
+date
+echo "***************************"
+echo "Who is logged in?"
+echo "${username}"
+echo "*****************************"
+echo -e "\n"
+
+
 # Q.2: Compare Two Numbers
 echo "--- Q.2: Compare Two Numbers ---"
 echo "Enter 1st number:"
@@ -69,46 +84,47 @@ else
 fi
 echo -e "\n"
 
-# Find the triangle type by reading the lengths of its sides. 
-echo “Enter the lengths of Triangle:” 
-echo “Side 1:” 
-read s1 
-echo “Side 2:” 
-read s2 
-echo “Side 3:” 
-read s3 
-if [ “$s1” -le 0 ] || [ “$s2” -le 0 ] || [ “$s3” -le 0 ] || \ 
-   [ “$((s1 + s2))” -le “$s3” ] || [ “$((s2 + s3))” -le “$s1” ] || [ “$((s1 + s3))” -le “$s2” ]; then 
- Echo “The given sides do not form a valid triangle.” 
- exit 1 
-fi 
-if [ “$s1” -eq “$s2” ] &&  [ “$s1” -eq “$s3” ]; then 
- echo “Given triangle is Equilateral Triangle” 
-elif  [ “$s1” -eq “$s2” ] || [ “$s1” -eq “$s3” ] || [ “$s2” -eq “$s3” ]; then 
- echo “Given triangle is Isosceles Triangle” 
-else 
- echo “Given triangle id Scalene Triangle” 
-fi
 
-# Q.4 Generate Factorial of Number.  
-echo “Enter the number:” 
-read num 
-fact=1 
-if [ “$num” -lt 0 ]; then  
- echo “Please enter a non-negative integer.” 
- exit 1 
-fi 
-for ((i=1; i<=num; i++)); do 
- fact=$((fact*i)) 
-done 
-echo “Factorial of $num is: $fact”
-    
+# Q.3: Triangle Type (by Sides)
+echo "--- Q.3: Triangle Type (by Sides) ---"
+echo "Enter side 1:"
+read s1
+echo "Enter side 2:"
+read s2
+echo "Enter side 3:"
+read s3
+if [ $((s1+s2)) -le $s3 ] || [ $((s1+s3)) -le $s2 ] || [ $((s2+s3)) -le $s1 ]; then
+  echo "Triangle is not valid."
+elif [ $s1 -eq $s2 ] && [ $s2 -eq $s3 ]; then
+  echo "Equilateral triangle"
+elif [ $s1 -eq $s2 ] || [ $s1 -eq $s3 ] || [ $s2 -eq $s3 ]; then
+  echo "Isosceles triangle"
+else
+  echo "Scalene triangle"
+fi
+echo -e "\n"
+
+
+# Q.4: Factorial
+echo "--- Q.4: Factorial ---"
+echo "Enter a number:"
+read num
+fact=1
+for (( i=1; i<=num; i++ )); do
+  fact=$((fact * i))
+done
+echo "Factorial of $num is: $fact"
+echo -e "\n"
+
+
 # Q.5: Fibonacci Series
 echo "--- Q.5: Fibonacci Series ---"
 echo "Enter the number of terms:"
 read num
+
 a=0
 b=1
+
 echo "Fibonacci sequence up to $num terms:"
 for (( i=0; i<num; i++ )); do
   echo -n "$a "
@@ -118,17 +134,21 @@ for (( i=0; i<num; i++ )); do
 done
 echo -e "\n\n" # Add newlines for spacing
 
+
 # Q.6: Palindrome Number
 echo "--- Q.6: Palindrome Number ---"
 echo "Enter a number:"
 read num
+
 temp=$num
 rev=0
+
 while [ $num -gt 0 ]; do
   rem=$((num % 10))
   rev=$((rev * 10 + rem))
   num=$((num / 10))
 done
+
 if [ $temp -eq $rev ]; then
   echo "Number is palindrome"
 else
@@ -146,12 +166,12 @@ fi
                     <span>Experiment 3: Utility Shell Scripts</span>
                     <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
-                <div class="accordion-content p-5 border-t border-gray-200">
+                <div class="accordion-content p-5 border-t border-gray-200 space-y-4">
                     <div class="relative">
 <pre data-lang="Shell Script (exp3_scripts.sh)">#!/bin/bash
 
 # Q.1: Find Type of Triangle (from Angles)
-echo "--- Q.1: Triangle Type ---"
+echo "--- Q.1: Triangle Type (by Angles) ---"
 echo "Enter Angle 1:"
 read a
 echo "Enter Angle 2:"
@@ -178,31 +198,39 @@ else
 fi
 echo -e "\n"
 
-# Q.2 Write a shell script that calculate the sum of integers from 1 to N using a loop. 
-Code: 
-echo “sum of integers” 
-echo “Enter the number:” 
-read N 
-sum=0 
-for ((i=1; i<=N; i++)); do 
- sum=$((sum+i)) 
-done 
-echo “Sun of integers from 1 to $N id: $sum” 
 
-# Q.3 Create a script that searches for a specific word in a file and counts its occurrences.  
-Code: 
-echo “Find a specific word in a file” 
-echo “Enter the file name:” 
-read file 
-if [ ! -f “$file” ]; then 
- echo “File does not exsist.” 
- exit 1 
-fi 
-echo “Enter word to search:” 
-read word 
-count=$(grep -o “\b$word\b” “$file” | wc -l) 
-echo “The word ‘$word’ occurs ‘$count’ times in the file ‘$file’.” 
-    
+# Q.2: Word, Character, and Line Count
+echo "--- Q.2: File Stats (wc) ---"
+echo "Enter filename:"
+read filename
+if [ ! -f "$filename" ]; then
+  echo "File not found."
+else
+  echo "Number of lines:"
+  wc -l < "$filename"
+  echo "Number of words:"
+  wc -w < "$filename"
+  echo "Number of characters:"
+  wc -c < "$filename"
+fi
+echo -e "\n"
+
+
+# Q.3: Search for a Word
+echo "--- Q.3: Word Search (grep) ---"
+echo "Enter filename:"
+read filename
+if [ ! -f "$filename" ]; then
+  echo "File not found."
+else
+  echo "Enter word to search:"
+  read word
+  echo "Occurrences of '$word':"
+  grep -o -i "$word" "$filename" | wc -l
+fi
+echo -e "\n"
+
+
 # Q.4: Find and Remove Duplicate Lines
 echo "--- Q.4: Remove Duplicates ---"
 echo "Enter the file name:"
@@ -220,9 +248,7 @@ echo -e "\n"
 # Q.5: Generate a Secure Random Password
 echo "--- Q.5: Random Password Generator ---"
 echo "Generating random 12 character password:"
-
 password=$(tr -dc 'A-Za-z0-9!@#$%^&*()_+{}[]' < /dev/urandom | fold -w 12 | head -n 1)
-
 echo "Your strong password: $password"
 </pre>
                         <button class="copy-button absolute top-3 right-3 bg-gray-700 text-white text-xs px-2 py-1 rounded hover:bg-gray-600 focus:outline-none">Copy</button>
@@ -654,7 +680,7 @@ while(True):
     # Re-queue if not finished
     if rt[p] > 0:
         ready_queue.append(p)
-    elif rt[p] == 0:
+    elif rt[p] == 0 and ct[p] == 0: # Mark completion only once
         flag += 1
         ct[p] = time
 
@@ -689,7 +715,10 @@ chart_str = ""
 time_str = "0"
 for item in gantt:
     chart_str += f"| {item[0]} "
-    time_str += f"{' ' * len(chart_str.split('|')[-1])}{item[1]}"
+    # Adjust spacing for time string to align
+    time_label = str(item[1])
+    spacing = len(chart_str.split('|')[-1]) + len(time_label) // 2
+    time_str += f"{time_label:>{spacing}}"
 print(chart_str + "|")
 print(time_str)
 </pre>
@@ -806,7 +835,7 @@ for (( i=0; i<n; i++ )); do
     wt[$i]=$((tat[i] - bt[i]))
     total_tat=$((total_tat + tat[i]))
     total_wt=$((total_wt + wt[i]))
-    echo -e "P${pid[$i]}\t${at[i]}\t${bt[i]}\t${ct[i]}\t${tat[$i]}\t${wt[$i]}"
+    echo -e "P${pid[$i]}\t${at[$i]}\t${bt[i]}\t${ct[i]}\t${tat[$i]}\t${wt[$i]}"
 done
 
 avg_tat=$(echo "scale=2; $total_tat / $n" | bc)
@@ -927,9 +956,6 @@ for i in range(n):
 choice = input("Priority scheme (high/low): ").strip().lower()
 preemptive_input = input("Preemptive? (y/n): ").strip().lower()
 preemptive = (preemptive_input == 'y')
-
-# Sort by AT for processing, but this is handled inside the algo
-# We just need the original PIDs
 
 ct, tat, wt = priority_scheduling(processes, choice, preemptive)
 
@@ -1375,10 +1401,6 @@ def wait(s):
 def signal(s):
     return s + 1
 
-# Note: The buffer logic in the PDF is slightly incorrect
-# The semaphore logic should be outside the buffer functions
-# A more correct implementation is:
-
 def producer():
     global mutex, empty, full, buf
     
@@ -1401,20 +1423,22 @@ def producer():
 
 def consumer():
     global mutex, empty, full, buf
-
+    
+    global full
     full = wait(full) # Wait for a full slot
     
+    global mutex
     mutex = wait(mutex) # Lock the buffer
     
     # Critical Section
     print("Consumer is consuming...")
-    # 'full' also acts as the 'out' index here (LIFO/Stack)
     buf[full] = 0 # 'full' is 0-indexed, so full=1 means index 0
     print("Consumer has consumed one item.")
     # End Critical Section
     
     mutex = signal(mutex) # Unlock the buffer
     
+    global empty
     empty = signal(empty) # Signal an empty slot
 
 def print_buffer_status():
@@ -1637,9 +1661,8 @@ def reader():
             
         if choice == 1:
             # Simulate another reader arriving
-            # This is a shortcut for the main menu's reader() call
             print("-> Simulating another reader...")
-            reader()
+            readcount += 1 # Simplified for simulation
             print(f"Total readers now: {readcount}")
         elif choice == 2:
             # Simulate a writer arriving
@@ -1766,7 +1789,13 @@ reader() {
     while true; do
         read -p "Reader choice: " rchoice
         case $rchoice in
-            1) reader ;; # Simulate another reader
+            1) 
+               # Simplified simulation: just increment count
+               wait mutex
+               readcount=$((readcount + 1))
+               echo "Another reader started. Total readers: $readcount"
+               signal mutex
+               ;;
             2) writer ;; # Simulate a writer (will fail)
             3) break ;;
             *) echo "Invalid choice (1, 2, or 3)" ;;
