@@ -84,7 +84,42 @@ else
 fi
 echo -e "\n"
 
+# Find the triangle type by reading the lengths of its sides. 
 
+echo “Enter the lengths of Triangle:” 
+echo “Side 1:” 
+read s1 
+echo “Side 2:” 
+read s2 
+echo “Side 3:” 
+read s3 
+if [ “$s1” -le 0 ] || [ “$s2” -le 0 ] || [ “$s3” -le 0 ] || \ 
+   [ “$((s1 + s2))” -le “$s3” ] || [ “$((s2 + s3))” -le “$s1” ] || [ “$((s1 + s3))” -le “$s2” ]; then 
+ Echo “The given sides do not form a valid triangle.” 
+ exit 1 
+fi 
+if [ “$s1” -eq “$s2” ] &&  [ “$s1” -eq “$s3” ]; then 
+ echo “Given triangle is Equilateral Triangle” 
+elif  [ “$s1” -eq “$s2” ] || [ “$s1” -eq “$s3” ] || [ “$s2” -eq “$s3” ]; then 
+ echo “Given triangle is Isosceles Triangle” 
+else 
+ echo “Given triangle id Scalene Triangle” 
+fi
+
+# Q.4 Generate Factorial of Number.  
+    
+echo “Enter the number:” 
+read num 
+fact=1 
+if [ “$num” -lt 0 ]; then  
+ echo “Please enter a non-negative integer.” 
+ exit 1 
+fi 
+for ((i=1; i<=num; i++)); do 
+ fact=$((fact*i)) 
+done 
+echo “Factorial of $num is: $fact”
+    
 # Q.5: Fibonacci Series
 echo "--- Q.5: Fibonacci Series ---"
 echo "Enter the number of terms:"
@@ -166,7 +201,31 @@ else
 fi
 echo -e "\n"
 
+# Q.2 Write a shell script that calculate the sum of integers from 1 to N using a loop. 
+Code: 
+echo “sum of integers” 
+echo “Enter the number:” 
+read N 
+sum=0 
+for ((i=1; i<=N; i++)); do 
+ sum=$((sum+i)) 
+done 
+echo “Sun of integers from 1 to $N id: $sum” 
 
+# Q.3 Create a script that searches for a specific word in a file and counts its occurrences.  
+Code: 
+echo “Find a specific word in a file” 
+echo “Enter the file name:” 
+read file 
+if [ ! -f “$file” ]; then 
+ echo “File does not exsist.” 
+ exit 1 
+fi 
+echo “Enter word to search:” 
+read word 
+count=$(grep -o “\b$word\b” “$file” | wc -l) 
+echo “The word ‘$word’ occurs ‘$count’ times in the file ‘$file’.” 
+    
 # Q.4: Find and Remove Duplicate Lines
 echo "--- Q.4: Remove Duplicates ---"
 echo "Enter the file name:"
