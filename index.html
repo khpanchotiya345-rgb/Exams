@@ -13,8 +13,12 @@
             border: 1px solid #e5e7eb; /* gray-200 */
             border-radius: 0.5rem; /* rounded-lg */
             padding: 1rem;
-            overflow-x: auto; /* Allow horizontal scroll for long code lines */
             font-size: 0.875rem; /* text-sm */
+            
+            /* --- FIXES --- */
+            overflow-x: auto; /* Allow horizontal scroll for long code lines */
+            max-height: 60vh;   /* Set a max height (60% of viewport) */
+            overflow-y: auto;   /* Add vertical scrollbar if needed */
         }
         
         /* Style for the code block language title */
@@ -2223,8 +2227,13 @@ if __name__ == "__main__":
         const copyButtons = document.querySelectorAll('.copy-button');
         copyButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Find the <pre> tag. It's the button's previous sibling.
-                const pre = button.previousElementSibling;
+                // Find the parent '.relative' div, then find the 'pre' tag inside it.
+                const parentDiv = button.closest('.relative');
+                if (!parentDiv) return; // Safety check
+
+                const pre = parentDiv.querySelector('pre');
+                if (!pre) return; // Safety check
+
                 const code = pre.innerText;
 
                 // Use the 'execCommand' method for broad compatibility,
